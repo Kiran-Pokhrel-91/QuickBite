@@ -5,6 +5,13 @@ build/
 dist/
 wheels/
 *.egg-info
+db.sqlite3
 
 # Virtual environments
 .venv
+
+# Environment variables
+.env
+
+# personal files
+filestructure.md

@@ -46,17 +46,16 @@ INSTALLED_APPS = [
     # Third-party apps
     'rest_framework',
     'corsheaders',
-    'cloudinary', 
+    'cloudinary',
 
     # Local apps
-    'common',   
-    'users',
-    'restaurants',
-    'menu',
-    'orders',
-    'auth',
-    
-    ]
+    'apps.common',
+    'apps.users',
+    'apps.resturants',
+    'apps.menu',
+    'apps.orders',
+    'apps.auth',
+]
 
 
 CORS_ALLOWED_ORIGINS = [
@@ -127,6 +126,9 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+# Custom user model
+AUTH_USER_MODEL = 'users.User'
 
 
 # Internationalization

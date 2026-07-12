@@ -53,8 +53,7 @@ INSTALLED_APPS = [
     'apps.users',
     'apps.resturants',
     'apps.menu',
-    'apps.orders',
-    'apps.auth',
+    'apps.roles'
 ]
 
 

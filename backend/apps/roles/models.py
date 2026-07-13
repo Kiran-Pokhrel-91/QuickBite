@@ -29,8 +29,6 @@ class RestaurantOwner(BaseModel):
         default=VerificationStatus.PENDING
     )
 
-    is_verified = models.BooleanField(default=False)
-
     def __str__(self):
         return self.business_name
 
@@ -58,7 +56,5 @@ class Rider(BaseModel):
         default=VerificationStatus.PENDING
     )
     
-    is_verified = models.BooleanField(default=False)
-
     def __str__(self):
         return self.user.email

@@ -1,8 +1,9 @@
 from rest_framework import serializers
+
 from .models import RestaurantOwner, Rider
 
-class RestaurantApplicationSerializer(serializers.ModelSerializer):
 
+class RestaurantApplicationSerializer(serializers.ModelSerializer):
     class Meta:
         model = RestaurantOwner
         fields = [
@@ -13,7 +14,6 @@ class RestaurantApplicationSerializer(serializers.ModelSerializer):
             "citizenship_back",
             "verification_status",
         ]
-
         read_only_fields = ["id", "verification_status"]
 
     def create(self, validated_data):
@@ -28,7 +28,6 @@ class RestaurantApplicationSerializer(serializers.ModelSerializer):
 
 
 class RiderApplicationSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Rider
         fields = [
@@ -38,7 +37,6 @@ class RiderApplicationSerializer(serializers.ModelSerializer):
             "license_image",
             "verification_status",
         ]
-
         read_only_fields = ["id", "verification_status"]
 
     def create(self, validated_data):
@@ -50,3 +48,31 @@ class RiderApplicationSerializer(serializers.ModelSerializer):
             )
 
         return Rider.objects.create(user=user, **validated_data)
+
+
+class RestaurantApprovalSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = RestaurantOwner
+        fields = ["verification_status"]
+
+    def validate_verification_status(self, value):
+        if (self.instance.verification_status != RestaurantOwner.VerificationStatus.PENDING):
+            raise serializers.ValidationError(
+                "Only pending applications can be updated."
+            )
+        return value
+
+
+class RiderApprovalSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Rider
+        fields = ["verification_status"]
+
+    def validate_verification_status(self, value):
+        if (self.instance.verification_status!= Rider.VerificationStatus.PENDING):
+            raise serializers.ValidationError(
+                "Only pending applications can be updated."
+            )
+        return value
+    
+    

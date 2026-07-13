@@ -13,11 +13,7 @@ class MenuItem(BaseModel):
 
     is_available = models.BooleanField(default=True, db_index=True)
 
-    restaurant = models.ForeignKey(
-        Restaurant,
-        on_delete=models.CASCADE,
-        related_name='menu_items'
-    )
+    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, related_name='menu_items')
 
     class Meta:
         indexes = [

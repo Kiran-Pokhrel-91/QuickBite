@@ -14,7 +14,7 @@ class RiderApplicationView(generics.CreateAPIView):
     serializer_class = RiderApplicationSerializer
     permission_classes = [IsAuthenticated]
 
-
+ 
 class MyRestaurantProfileView(generics.RetrieveAPIView):
     serializer_class = RestaurantApplicationSerializer
     permission_classes = [IsAuthenticated]

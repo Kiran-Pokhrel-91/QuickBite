@@ -11,11 +11,7 @@ class Restaurant(BaseModel):
 
     is_active = models.BooleanField(default=True, db_index=True)
 
-    owner = models.ForeignKey(
-        User,
-        on_delete=models.CASCADE,
-        related_name='restaurants'
-    )
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='restaurants')
 
     class Meta:
         indexes = [
